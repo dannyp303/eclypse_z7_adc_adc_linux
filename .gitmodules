@@ -1,0 +1,10 @@
+[submodule "py_ez7_udmabuf"]
+	path = py_ez7_udmabuf
+	url = https://github.com/dannyp303/py_ez7_udmabuf
+[submodule "Eclypse-Z7-OS"]
+	path = Eclypse-Z7-OS
+	url = git@github.com:dannyp303/Eclypse-Z7-OS.git
+	branch = zmod_adc_adc/master
+[submodule "Eclypse-Z7-HW"]
+	path = Eclypse-Z7-HW
+	url = git@github.com:dannyp303/Eclypse-Z7-HW.git
