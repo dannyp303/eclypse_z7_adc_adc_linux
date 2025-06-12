@@ -8,3 +8,7 @@
 [submodule "Eclypse-Z7-HW"]
 	path = Eclypse-Z7-HW
 	url = git@github.com:dannyp303/Eclypse-Z7-HW.git
+[submodule "docker-petalinux"]
+	path = docker-petalinux
+	url = git@github.com:carlesfernandez/docker-petalinux.git
+	branch = Xilinx_2019.1
