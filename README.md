@@ -26,9 +26,6 @@ The main caveate with our operating system design is that xilinx's axidma driver
 
 To solve this, we add the [u-dma-buf](https://github.com/ikwzm/udmabuf) kernel module as a bitbake recipe. This kernel module allows us to statically define dma buffer memory regions in our device tree and access them through user space devices like `/dev/udmabuf0`.
 
-#### NOTE: The bitbake recipe currently does not properly install the .ko. Instead find the module in the kernel build and install it manually on the running system.
-
-
 ## Cross Compiling for the Eclypse Z7
 It is highly recommended to cross compile all user space code for the eclypse in a crossenv in petalinux using the SDK for your build.
 
