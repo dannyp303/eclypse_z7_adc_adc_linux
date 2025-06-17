@@ -3,13 +3,13 @@ A suite of tools, libraries and projects used to get dual ZMOD adcs as linux dev
 
 
 ## Table of Contents
-- [docker-petalinux](#docker-petalinux)
+- [docker-petalinux](https://github.com/carlesfernandez/docker-petalinux/tree/Xilinx_2019.1)
     - docker build for petalinux with xilinx 2019.1, which was used to create the hardware.
-- [Eclypse-Z7-HW](#eclypse-z7-hw)
+- [Eclypse-Z7-HW](https://github.com/dannyp303/Eclypse-Z7-HW/tree/zmod_adc_adc/master)
     - A fork of the Eclypse-Z7-HW repo with a zmod_adc_adc/master branch containing the hardware project files for the dual adc setup.
-- [Eclypse-Z7-OS](#eclypse-z7-os)
+- [Eclypse-Z7-OS](https://github.com/dannyp303/Eclypse-Z7-OS/tree/zmod_adc_adc/master)
     - A fork of the Eclypse-Z7-OS repo with a zmod_adc_adc/master branch containing the petalinux build project for the above hardware project.
-- [py_ez7_udmabuf](#py-ez7-udmabuf)
+- [py_ez7_udmabuf](https://github.com/dannyp303/py_ez7_udmabuf)
     - Source for python bindings that can be used to interact with the zmod adcs. Mostly copied from [miyo's py_eclypse_z7 project](https://github.com/miyo/py_eclypse_z7/tree/main) with alterations to use u-dma-buf instead of the xilinx axidma drivers, as the axidma drivers do not allow us to use two AXI with seperate dma ranges.
 
 ## Hardware Description
@@ -61,8 +61,8 @@ The first block defines the locations and sizes of the dma buffers. Notice that 
 In order to adjust location and size of the DMA buffers, we must rebuild the DTB via the command `petalinux-build -c device-tree` in our OS build, then drop it onto the device.
 
 ## Building an Image
-After you have followed the instructions in the [docker-petalinux](#docker-petalinux) repo and have a working petalinux container, we can use these steps to build our image.
-1. Use `docker cp` to copy your [Eclypse-Z7-OS](#eclypse-z7-os) repo into the container. 
+After you have followed the instructions in the [docker-petalinux](https://github.com/carlesfernandez/docker-petalinux/tree/Xilinx_2019.1) repo and have a working petalinux container, we can use these steps to build our image.
+1. Use `docker cp` to copy your [Eclypse-Z7-OS](https://github.com/dannyp303/Eclypse-Z7-OS/tree/zmod_adc_adc/master) repo into the container. 
 2. Inside the container and inside the copied repo run `petalinux-build`.
 3. After the build is complete, run `petalinux-build -c device-tree -x clean && petalinux-build && petalinux-package --boot   --fsbl images/linux/zynq_fsbl.elf   --fpga ../design_1_wrapper_hw_platform_0/design_1_wrapper.bit   --u-boot --force`
 4. Copy out `images/linux` from the root of the repo, this is your image. 
