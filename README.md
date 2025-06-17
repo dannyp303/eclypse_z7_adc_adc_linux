@@ -92,9 +92,9 @@ Now that we have our image files from the `images/linux` directory, we can follo
     zmod=adc-adc
     ```
 4. We should also change your MAC address inside the uEnv.txt if we have multiple Eclypse Z7s on the network. To set the MAC add something like this to the uEnv.txt.
-```
-ethaddr=00:0a:35:00:1e:54
-``` 
+    ```
+    ethaddr=00:0a:35:00:1e:54
+    ``` 
 5. Your SD card should now boot to have `/dev/uio0`, `/dev/uio1`, `/dev/udmabuf0` and `/dev/udmabuf1`.
 
 ## Release Image
