@@ -60,17 +60,14 @@ The first block defines the locations and sizes of the dma buffers. Notice that 
 
 In order to adjust location and size of the DMA buffers, we must rebuild the DTB via the command `petalinux-build -c device-tree` in our OS build, then drop it onto the device.
 
-## Cross Compiling for the Eclypse Z7
-It is highly recommended to cross compile all user space code for the eclypse in a crossenv in petalinux using the SDK for your build.
-
-### Building an Image
+## Building an Image
 After you have followed the instructions in the [docker-petalinux](#docker-petalinux) repo and have a working petalinux container, we can use these steps to build our image.
 1. Use `docker cp` to copy your [Eclypse-Z7-OS](#eclypse-z7-os) repo into the container. 
 2. Inside the container and inside the copied repo run `petalinux-build`.
 3. After the build is complete, run `petalinux-build -c device-tree -x clean && petalinux-build && petalinux-package --boot   --fsbl images/linux/zynq_fsbl.elf   --fpga ../design_1_wrapper_hw_platform_0/design_1_wrapper.bit   --u-boot --force`
 4. Copy out `images/linux` from the root of the repo, this is your image. 
 
-### Updating the device.
+## Updating the device.
 Now that we have our image files from the `images/linux` directory, we can follow these steps to update the device.
 1. Prepare an SD card with the [Digilent v0.3 Debian image](https://github.com/Digilent/Eclypse-Z7/releases/tag/v0.3).
 2. Copy `BOOT.BIN`, `system.bit`, `system.dtb`, and `image.ub` from the `images/linux` directory into the `boot` partition of the SD card, replacing the existing files. 
@@ -100,9 +97,11 @@ ethaddr=00:0a:35:00:1e:54
 ``` 
 5. Your SD card should now boot to have `/dev/uio0`, `/dev/uio1`, `/dev/udmabuf0` and `/dev/udmabuf1`.
 
-### Release Image
+## Release Image
 There is a [release image](https://github.com/dannyp303/eclypse_z7_adc_adc_linux/releases/tag/release-image) available that can be burned to an SD card and used with all of the features in this repo immediately.
 
+## Cross Compiling for the Eclypse Z7
+It is highly recommended to cross compile all user space code for the eclypse in a crossenv in petalinux using the SDK for your build.
 ### Crossenv setup
 1. First we have to build the sdk. To do this, after building your image with `petalinux-build` we run `petalinux-build --sdk`.
 2. After we have our sdk, we source the sdk env with `source /opt/petalinux-sdk/environment-setup-cortexa9t2hf-neon-xilinx-linux-gnueabi`
